@@ -10,9 +10,18 @@ The program allows you to specify the string to be searched in the HTTP response
 
 ## Installation
 
+Using Go
+
 To install the program, you need to have Go installed on your machine.
 
 go install github.com/sh4ngtsung/xssanalyzer@latest
+
+Using git clone
+
+git clone https://github.com/Sh4ngTsung/xssAnalyzer.git <br>
+cd xssAnalyzer<br>
+go build -ldflags "-s -w" xssAnalyzer.go<br>
+./xssAnalyzer<br>
 
 ## Usage
 
