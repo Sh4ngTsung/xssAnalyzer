@@ -21,3 +21,5 @@ To use the program, you need to provide a list of domains to analyze. The list s
 For example, to analyze a list of domains stored in a file called "domains.txt", you can run the following command:
 
 cat domains.txt | waybackurls | gf xss | qsreplace '\<img src=x onerror=confirm(1)>' | xssAnalyzer -p "confirm(1)"
+
+echo "example.com" | assetfinder -subs-only | gauplus | gf xss | qsreplace '\<svg onload=prompt(document.domain)>' | xssAnalyzer -p "prompt(document.domain)"
