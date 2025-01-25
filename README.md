@@ -28,15 +28,12 @@ go install github.com/sh4ngtsung/xssanalyzer@latest
 Alternatively, you can clone the repository and compile the program manually:
 git clone https://github.com/Sh4ngTsung/xssAnalyzer.git
 cd xssAnalyzer
-go build -ldflags "-s -w" xssAnalyzer.go
+go build -ldflags "-s -w" -o xssAnalyzer xssAnalyzer.go
 ./xssAnalyzer
 ```
 
 ### Usage
-Domain Input
 
-To use the program, you need to provide a list of domains to analyze via standard input (STDIN).
-Example 1: Using a file of domains
 
 To analyze a list of domains stored in a file called domains.txt, run the following command:
 ```
