@@ -25,7 +25,6 @@ go install github.com/sh4ngtsung/xssanalyzer@latest
 
 ### Using Git Clone
 ```
-Alternatively, you can clone the repository and compile the program manually:
 git clone https://github.com/Sh4ngTsung/xssAnalyzer.git
 cd xssAnalyzer
 go build -ldflags "-s -w" -o xssAnalyzer xssAnalyzer.go
