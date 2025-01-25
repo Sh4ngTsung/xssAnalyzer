@@ -1,34 +1,51 @@
-# Description
+# XSS Analyzer
 
-The program above is a simple XSS (Cross-Site Scripting) vulnerability analyzer that checks whether a list of domains is vulnerable to XSS attacks.
+The **XSS Analyzer** is a simple **Cross-Site Scripting (XSS)** vulnerability scanner. It checks if a list of domains is vulnerable to XSS attacks by sending HTTP requests and looking for typical XSS patterns in the responses.
 
-The program reads a list of domains from the standard input and then starts multiple goroutines to check if each domain is vulnerable to XSS. To do this, it sends an HTTP request to each domain and checks if the response contains one or more strings that are common in XSS attacks.
+## Description
 
-If the program finds an XSS string in the server's response, it will print "XSS FOUND:" followed by the corresponding domain in red. Otherwise, it will print "Not Vulnerable:" followed by the corresponding domain in green. The program uses different colors to visually highlight the results.
+This program reads a list of domains from the standard input and then uses **goroutines** to check if each domain is vulnerable to XSS. It does this by sending HTTP requests to each domain and checking if the response contains one or more strings commonly associated with XSS attacks.
 
-The program allows you to specify the string to be searched in the HTTP response using the "-p" flag. This allows you to search for different XSS patterns and adjust the program to look for specific vulnerabilities in a particular domain.
+- **XSS FOUND**: If an XSS pattern is found, the program prints `XSS FOUND:` followed by the domain in red.
+- **Not Vulnerable**: Otherwise, it prints `Not Vulnerable:` followed by the domain in green.
+
+You can customize the XSS patterns to search for in the HTTP response using the `-p` flag, allowing you to tailor the scan to specific vulnerabilities in a given domain.
 
 ## Installation
 
-Using Go
+### Using Go
 
-To install the program, you need to have Go installed on your machine.
+To install the program using Go, make sure Go is installed on your machine.
 
+Run the following command to install:
+
+```bash
 go install github.com/sh4ngtsung/xssanalyzer@latest
 
-Using git clone
+Using Git Clone
 
-git clone https://github.com/Sh4ngTsung/xssAnalyzer.git <br>
-cd xssAnalyzer<br>
-go build -ldflags "-s -w" xssAnalyzer.go<br>
-./xssAnalyzer<br>
+Alternatively, you can clone the repository and compile the program manually:
+git clone https://github.com/Sh4ngTsung/xssAnalyzer.git
+cd xssAnalyzer
+go build -ldflags "-s -w" xssAnalyzer.go
+./xssAnalyzer
 
-## Usage
+Usage
+Domain Input
 
-To use the program, you need to provide a list of domains to analyze. The list should be provided via the standard input.
+To use the program, you need to provide a list of domains to analyze via standard input (STDIN).
+Example 1: Using a file of domains
 
-For example, to analyze a list of domains stored in a file called "domains.txt", you can run the following command:
-
+To analyze a list of domains stored in a file called domains.txt, run the following command:
+```bash
 cat domains.txt | waybackurls | gf xss | qsreplace '\<img src=x onerror=confirm(1)>' | xssAnalyzer -p "confirm(1)"
 
+Example 2: Using subdomain enumeration tools
+
+You can also use tools like assetfinder, gauplus, and gf to collect domains/subdomains and analyze them with the XSS Analyzer. Example:
+```bash
 echo "example.com" | assetfinder -subs-only | gauplus | gf xss | qsreplace '\<svg onload=prompt(document.domain)>' | xssAnalyzer -p "prompt(document.domain)"
+
+Flags
+
+    -p: Specifies the string to search for in the HTTP responses. This allows you to look for specific XSS patterns.
