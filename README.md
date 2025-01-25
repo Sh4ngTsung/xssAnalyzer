@@ -45,7 +45,3 @@ You can also use tools like assetfinder, gauplus, and gf to collect domains/subd
 ```
 echo "example.com" | assetfinder -subs-only | gauplus | gf xss | qsreplace '\<svg onload=prompt(document.domain)>' | xssAnalyzer -p "prompt(document.domain)"
 ```
-
-### Flags
-
-    -p: Specifies the string to search for in the HTTP responses. This allows you to look for specific XSS patterns.
