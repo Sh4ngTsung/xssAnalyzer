@@ -37,13 +37,11 @@ To use the program, you need to provide a list of domains to analyze via standar
 Example 1: Using a file of domains
 
 To analyze a list of domains stored in a file called domains.txt, run the following command:
-```bash
 cat domains.txt | waybackurls | gf xss | qsreplace '\<img src=x onerror=confirm(1)>' | xssAnalyzer -p "confirm(1)"
 
 Example 2: Using subdomain enumeration tools
 
 You can also use tools like assetfinder, gauplus, and gf to collect domains/subdomains and analyze them with the XSS Analyzer. Example:
-```bash
 echo "example.com" | assetfinder -subs-only | gauplus | gf xss | qsreplace '\<svg onload=prompt(document.domain)>' | xssAnalyzer -p "prompt(document.domain)"
 
 Flags
